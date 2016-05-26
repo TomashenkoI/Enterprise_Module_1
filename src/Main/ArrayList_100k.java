@@ -11,6 +11,7 @@ public class ArrayList_100k {
 
 
     public static void main(String[] args) {
+
         ImplementationForEachArrayListCase implementationForEachArrayListCase = new ImplementationForEachArrayListCase();
 
         ArrayList<Integer> arrayList = new ArrayList<>();

@@ -1,5 +1,6 @@
 package Main;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
@@ -9,20 +10,21 @@ import java.util.ListIterator;
 public class LinkedListMethods {
     public static int theNumberOfAttempts = 100;
 
-    public double arrayListAddTime(int count, LinkedList<Integer> linkedList) {
+    public double linkedListAddTime(int count, LinkedList<Integer> linkedList) {
         double allElapsedTime = 0;
         double[] usedTime = new double[theNumberOfAttempts];
 
+        for (int j = 0; j < count; j++) {
+            linkedList.add(j);
+        }
+
         for (int i = 0; i < theNumberOfAttempts; i++) {
-            linkedList.clear();
 
-            double startTime = System.currentTimeMillis();
+            double startTime = System.nanoTime();
 
-            for (int j = 0; j < count; j++) {
-                linkedList.add(j);
-            }
+            linkedList.add(0);
 
-            double endTime = System.currentTimeMillis();
+            double endTime = System.nanoTime();
 
             double elapsedTime = endTime - startTime;
 
@@ -33,25 +35,25 @@ public class LinkedListMethods {
             allElapsedTime += usedTime[i];
         }
 
-        double averageTime = allElapsedTime / 100;
+        double averageTime = allElapsedTime / theNumberOfAttempts;
 
         return averageTime;
     }
 
-    public double arrayListGetTime (int count, LinkedList<Integer> linkedList) {
+    public double linkedListGetTime(int count, LinkedList<Integer> linkedList) {
         double allElapsedTime = 0;
 
         double[] usedTime = new double[theNumberOfAttempts];
 
         for (int i = 0; i < theNumberOfAttempts; i++) {
 
-            double startTime = System.currentTimeMillis();
+            double startTime = System.nanoTime();
 
-            for (int j = 0; j < count; j++) {
-                linkedList.get(j);
+            for (int j = count; j < count + theNumberOfAttempts; j++ ) {
+                int a = linkedList.get(j);
             }
 
-            double endTime = System.currentTimeMillis();
+            double endTime = System.nanoTime();
 
             double elapsedTime = endTime - startTime;
 
@@ -62,25 +64,25 @@ public class LinkedListMethods {
             allElapsedTime += usedTime[i];
         }
 
-        double averageTime = allElapsedTime / 100;
+        double averageTime = allElapsedTime / theNumberOfAttempts;
 
         return averageTime;
     }
 
-    public double arrayListContainsTime (int count, LinkedList<Integer> linkedList) {
+    public double linkedListContainsTime(int count, LinkedList<Integer> linkedList) {
         double allElapsedTime = 0;
 
         double[] usedTime = new double[theNumberOfAttempts];
 
+        linkedList.add(0666);
+
         for (int i = 0; i < theNumberOfAttempts; i++) {
 
-            double startTime = System.currentTimeMillis();
+            double startTime = System.nanoTime();
 
-            for (int j = 0; j < count; j++) {
-                linkedList.contains(count);
-            }
+            linkedList.contains(0666);
 
-            double endTime = System.currentTimeMillis();
+            double endTime = System.nanoTime();
 
             double elapsedTime = endTime - startTime;
 
@@ -91,25 +93,23 @@ public class LinkedListMethods {
             allElapsedTime += usedTime[i];
         }
 
-        double averageTime = allElapsedTime / 100;
+        double averageTime = allElapsedTime / theNumberOfAttempts;
 
         return averageTime;
     }
 
-    double arrayListRemoveTime (int count, LinkedList<Integer> linkedList) {
+    double linkedListRemoveTime(int count, LinkedList<Integer> linkedList) {
         double allElapsedTime = 0;
 
         double[] usedTime = new double[theNumberOfAttempts];
 
         for (int i = 0; i < theNumberOfAttempts; i++) {
 
-            double startTime = System.currentTimeMillis();
+            double startTime = System.nanoTime();
 
-            while (!linkedList.isEmpty()) {
-                linkedList.remove(0);
-            }
+            linkedList.remove(count - i);
 
-            double endTime = System.currentTimeMillis();
+            double endTime = System.nanoTime();
 
             double elapsedTime = endTime - startTime;
 
@@ -120,23 +120,23 @@ public class LinkedListMethods {
             allElapsedTime += usedTime[i];
         }
 
-        double averageTime = allElapsedTime / 100;
+        double averageTime = allElapsedTime / theNumberOfAttempts;
 
         return averageTime;
     }
 
-    double arrayListIteratorAddTime (int count, LinkedList<Integer> linkedList, ListIterator<Integer> listIterator) {
+    double linkedListIteratorAddTime(int count, LinkedList<Integer> linkedList, ListIterator<Integer> listIterator) {
         double allElapsedTime = 0;
 
         double[] usedTime = new double[theNumberOfAttempts];
 
         for (int i = 0; i < theNumberOfAttempts; i++) {
 
-            double startTime = System.currentTimeMillis();
+            double startTime = System.nanoTime();
 
             listIterator = linkedList.listIterator();
 
-            double endTime = System.currentTimeMillis();
+            double endTime = System.nanoTime();
 
             double elapsedTime = endTime - startTime;
 
@@ -147,12 +147,12 @@ public class LinkedListMethods {
             allElapsedTime += usedTime[i];
         }
 
-        double averageTime = allElapsedTime / 100;
+        double averageTime = allElapsedTime / theNumberOfAttempts;
 
         return averageTime;
     }
 
-    double arrayListIteratorRemoveTime (int count, LinkedList<Integer> linkedList, ListIterator<Integer> listIterator) {
+    double linkedListIteratorRemoveTime(int count, LinkedList<Integer> linkedList, ListIterator<Integer> listIterator) {
         double allElapsedTime = 0;
 
         double[] usedTime = new double[theNumberOfAttempts];
@@ -161,13 +161,13 @@ public class LinkedListMethods {
 
             listIterator = linkedList.listIterator();
 
-            double startTime = System.currentTimeMillis();
+            double startTime = System.nanoTime();
 
             while (!listIterator.hasNext()) {
                 listIterator.remove();
             }
 
-            double endTime = System.currentTimeMillis();
+            double endTime = System.nanoTime();
 
             double elapsedTime = endTime - startTime;
 
@@ -178,7 +178,41 @@ public class LinkedListMethods {
             allElapsedTime += usedTime[i];
         }
 
-        double averageTime = allElapsedTime / 100;
+        double averageTime = allElapsedTime / theNumberOfAttempts;
+
+        return averageTime;
+    }
+
+    double linkedListPopulateTime (int count, LinkedList<Integer> linkedListList) {
+        double allElapsedTime = 0;
+
+        double[] usedTime = new double[theNumberOfAttempts];
+        LinkedList<Integer> linkedList1 = new LinkedList<>();
+
+        for (int i = 0; i < count; i++) {
+            linkedListList.add(i);
+        }
+
+        for (int i = 0; i < theNumberOfAttempts; i++) {
+
+            linkedList1.clear();
+
+            double startTime = System.nanoTime();
+
+            linkedList1 = linkedListList;
+
+            double endTime = System.nanoTime();
+
+            double elapsedTime = endTime - startTime;
+
+            usedTime[i] = elapsedTime;
+        }
+
+        for (int i = 0; i < usedTime.length; i++) {
+            allElapsedTime += usedTime[i];
+        }
+
+        double averageTime = allElapsedTime / theNumberOfAttempts;
 
         return averageTime;
     }

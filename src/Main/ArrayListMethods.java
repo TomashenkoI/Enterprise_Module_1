@@ -13,16 +13,17 @@ public class ArrayListMethods {
         double allElapsedTime = 0;
         double[] usedTime = new double[theNumberOfAttempts];
 
+        for (int j = 0; j < count; j++) {
+            arrayList.add(j);
+        }
+
         for (int i = 0; i < theNumberOfAttempts; i++) {
-            arrayList.clear();
 
-            double startTime = System.currentTimeMillis();
+            double startTime = System.nanoTime();
 
-            for (int j = 0; j < count; j++) {
-                arrayList.add(j);
-            }
+            arrayList.add(0);
 
-            double endTime = System.currentTimeMillis();
+            double endTime = System.nanoTime();
 
             double elapsedTime = endTime - startTime;
 
@@ -33,7 +34,7 @@ public class ArrayListMethods {
             allElapsedTime += usedTime[i];
         }
 
-        double averageTime = allElapsedTime / 100;
+        double averageTime = allElapsedTime / theNumberOfAttempts;
 
         return averageTime;
     }
@@ -45,13 +46,13 @@ public class ArrayListMethods {
 
         for (int i = 0; i < theNumberOfAttempts; i++) {
 
-            double startTime = System.currentTimeMillis();
+            double startTime = System.nanoTime();
 
-            for (int j = 0; j < count; j++) {
+            for (int j = count; j < count + theNumberOfAttempts; j++) {
                 arrayList.get(j);
             }
 
-            double endTime = System.currentTimeMillis();
+            double endTime = System.nanoTime();
 
             double elapsedTime = endTime - startTime;
 
@@ -62,7 +63,7 @@ public class ArrayListMethods {
             allElapsedTime += usedTime[i];
         }
 
-        double averageTime = allElapsedTime / 100;
+        double averageTime = allElapsedTime / theNumberOfAttempts;
 
         return averageTime;
     }
@@ -71,16 +72,15 @@ public class ArrayListMethods {
         double allElapsedTime = 0;
 
         double[] usedTime = new double[theNumberOfAttempts];
+        arrayList.add(0666);
 
         for (int i = 0; i < theNumberOfAttempts; i++) {
 
-            double startTime = System.currentTimeMillis();
+            double startTime = System.nanoTime();
 
-            for (int j = 0; j < count; j++) {
-                arrayList.contains(count);
-            }
+            arrayList.contains(0666);
 
-            double endTime = System.currentTimeMillis();
+            double endTime = System.nanoTime();
 
             double elapsedTime = endTime - startTime;
 
@@ -91,7 +91,7 @@ public class ArrayListMethods {
             allElapsedTime += usedTime[i];
         }
 
-        double averageTime = allElapsedTime / 100;
+        double averageTime = allElapsedTime / theNumberOfAttempts;
 
         return averageTime;
     }
@@ -103,13 +103,11 @@ public class ArrayListMethods {
 
         for (int i = 0; i < theNumberOfAttempts; i++) {
 
-            double startTime = System.currentTimeMillis();
+            double startTime = System.nanoTime();
 
-            while (!arrayList.isEmpty()) {
-                arrayList.remove(0);
-            }
+            arrayList.remove(count - i);
 
-            double endTime = System.currentTimeMillis();
+            double endTime = System.nanoTime();
 
             double elapsedTime = endTime - startTime;
 
@@ -120,7 +118,7 @@ public class ArrayListMethods {
             allElapsedTime += usedTime[i];
         }
 
-        double averageTime = allElapsedTime / 100;
+        double averageTime = allElapsedTime / theNumberOfAttempts;
 
         return averageTime;
     }
@@ -131,12 +129,13 @@ public class ArrayListMethods {
         double[] usedTime = new double[theNumberOfAttempts];
 
         for (int i = 0; i < theNumberOfAttempts; i++) {
+            listIterator = null;
 
-            double startTime = System.currentTimeMillis();
+            double startTime = System.nanoTime();
 
             listIterator = arrayList.listIterator();
 
-            double endTime = System.currentTimeMillis();
+            double endTime = System.nanoTime();
 
             double elapsedTime = endTime - startTime;
 
@@ -147,7 +146,7 @@ public class ArrayListMethods {
             allElapsedTime += usedTime[i];
         }
 
-        double averageTime = allElapsedTime / 100;
+        double averageTime = allElapsedTime / theNumberOfAttempts;
 
         return averageTime;
     }
@@ -161,13 +160,13 @@ public class ArrayListMethods {
 
             listIterator = arrayList.listIterator();
 
-            double startTime = System.currentTimeMillis();
+            double startTime = System.nanoTime();
 
             while (!listIterator.hasNext()) {
                 listIterator.remove();
             }
 
-            double endTime = System.currentTimeMillis();
+            double endTime = System.nanoTime();
 
             double elapsedTime = endTime - startTime;
 
@@ -178,9 +177,42 @@ public class ArrayListMethods {
             allElapsedTime += usedTime[i];
         }
 
-        double averageTime = allElapsedTime / 100;
+        double averageTime = allElapsedTime / theNumberOfAttempts;
 
         return averageTime;
     }
 
+    double arrayListPopulateTime (int count, ArrayList<Integer> arrayList) {
+        double allElapsedTime = 0;
+
+        double[] usedTime = new double[theNumberOfAttempts];
+        ArrayList<Integer> arrayList1 = new ArrayList<>();
+
+        for (int i = 0; i < count; i++) {
+            arrayList.add(i);
+        }
+
+        for (int i = 0; i < theNumberOfAttempts; i++) {
+
+            arrayList1.clear();
+
+            double startTime = System.nanoTime();
+
+            arrayList1 = arrayList;
+
+            double endTime = System.nanoTime();
+
+            double elapsedTime = endTime - startTime;
+
+            usedTime[i] = elapsedTime;
+        }
+
+        for (int i = 0; i < usedTime.length; i++) {
+            allElapsedTime += usedTime[i];
+        }
+
+        double averageTime = allElapsedTime / theNumberOfAttempts;
+
+        return averageTime;
+    }
 }

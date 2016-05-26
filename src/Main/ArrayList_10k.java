@@ -8,14 +8,18 @@ import java.util.*;
 public class ArrayList_10k {
     public static int count = 10000;
     public static String volume = "10k";
-
+    public static ImplementationForEachArrayListCase implementationForEachArrayListCase = new ImplementationForEachArrayListCase();
+    public static ArrayListMethods  arrayListMethods = new ArrayListMethods();
+    public static ArrayList<Integer> arrayList = new ArrayList<>();
+    public static ListIterator<Integer> listIterator = null;
 
     public static void main(String[] args) {
-        ImplementationForEachArrayListCase implementationForEachArrayListCase = new ImplementationForEachArrayListCase();
 
-        ArrayList<Integer> arrayList = new ArrayList<>();
-        ListIterator<Integer> listIterator = null;
 
         implementationForEachArrayListCase.implementation(volume, count, arrayList, listIterator);
+    }
+
+    public static String arrayListAdd_10k () {
+        return String.valueOf(arrayListMethods.arrayListAddTime(count, arrayList));
     }
 }
